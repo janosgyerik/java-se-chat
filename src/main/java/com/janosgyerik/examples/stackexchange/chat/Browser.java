@@ -29,6 +29,10 @@ public class Browser {
 
     public Browser() {
         agent = new MechanizeAgent();
+
+        // Note: very shaky!
+        // AbstractHttpClient is deprecated as of version 4.4.1 of org.apache.httpcomponents:httpclient
+        // The custom redirect strategy is needed, because of the 302 redirect in SE_OPENID_LOGIN_ROOT/submit
         AbstractHttpClient client = agent.getClient();
         client.setRedirectStrategy(new LaxRedirectStrategy());
     }
